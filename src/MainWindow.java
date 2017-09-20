@@ -8,6 +8,7 @@ public class MainWindow extends JFrame {
         setLocation(400,400);
         add(new GameField());
         setVisible(true);
+        setResizable(false);
     }
 
     public static void main(String[] args){

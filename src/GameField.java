@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class GameField extends JPanel implements ActionListener{
@@ -116,5 +118,32 @@ public class GameField extends JPanel implements ActionListener{
             move();
         }
         repaint();
+    }
+    class FieldKeyListener extends KeyAdapter{
+        @Override
+        public void keyPressed(KeyEvent e) {
+            super.keyPressed(e);
+            int key = e.getKeyCode();
+            if(key == KeyEvent.VK_LEFT && ! right){
+                left = true;
+                up = false;
+                down = false;
+            }
+            if(key == KeyEvent.VK_RIGHT && ! left){
+                right = true;
+                up = false;
+                down = false;
+            }
+            if(key == KeyEvent.VK_UP && ! down){
+                right = false;
+                up = true;
+                left = false;
+            }
+            if(key == KeyEvent.VK_DOWN && ! up){
+                left = false;
+                right = false;
+                down = true;
+            }
+        }
     }
 }
